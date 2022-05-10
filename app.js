@@ -23,7 +23,7 @@ const reviewRoutes = require('./routes/reviews');
 const usersRoutes = require('./routes/users');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelpCamp';
-const secret = process.env.CLOUDINARY_SECRET || 'thisismyvitalmessage';
+const secret = process.env.SECRET || 'thisismyvitalmessage';
 
 mongoose.connect(dbUrl);
 
@@ -156,6 +156,7 @@ app.use((err,req,res,next) => {
     res.status(statusCode).render('error', {err});
 })
 
-app.listen(3000, () => {
-    console.log('Listening port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on ${port}`);
 })
